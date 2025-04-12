@@ -8,6 +8,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
 
+# --- Main App Configuration ---
+st.set_page_config(
+    page_title="DataLab Pro",
+    page_icon="📊",
+    layout="wide"
+)
+
 # ---------- HIDE STREAMLIT DEFAULT HEADER & FOOTER ----------
 st.markdown("""
     <style>
@@ -164,12 +171,6 @@ def cleaning_tab():
     """, unsafe_allow_html=True)
 
 # --- Main App ---
-st.set_page_config(
-    page_title="DataLab Pro",
-    page_icon="📊",
-    layout="wide"
-)
-
 st.title("📊 DataLab Pro")
 tab1, tab2, tab3 = st.tabs(["AutoML", "Visualization", "Data Cleaning"])
 
