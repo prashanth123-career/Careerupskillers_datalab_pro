@@ -194,3 +194,21 @@ st.markdown("""
     <a href='https://youtube.com/@careerupskillers' target='_blank' style='margin: 0 10px;'>▶️ YouTube</a>
 </div>
 """, unsafe_allow_html=True)
+st.markdown("""
+<div style='background-color: #fff8e1; border-left: 5px solid #ffb300; padding: 15px; border-radius: 8px; margin-top: 30px;'>
+  <h4>🤖 Build ML Projects Without Coding – Just Upload Your CSV!</h4>
+  <p>Thousands have used <strong>DataLab Pro</strong> + our ₹499 AI Kit to create projects like:</p>
+  <ul>
+    <li>📊 AutoML dashboards for internships</li>
+    <li>📦 CSV-based ML classifiers for clients</li>
+    <li>🧠 Resume boosters for Data Science jobs</li>
+  </ul>
+  <p>💬 “I used this kit + app to land a freelance ML project within a week.” – <em>Arjun, BTech Student</em></p>
+  <p>
+    🔗 <a href='https://youtu.be/uq_ba4Prjps?si=KW2odA2izyFDsNw6' target='_blank'>Watch Freelance Earning Proof</a> • 
+    <a href='https://indianexpress.com/article/technology/tech-layoffs-march-2025-it-layoffs-9919985/' target='_blank'>Why AI Projects Are a Must Now</a>
+  </p>
+  <a href='https://pages.razorpay.com/pl_Q9haRTHXpyB9SS/view' target='_blank' style='background-color:#2196f3;color:white;padding:10px 25px;border-radius:6px;text-decoration:none;font-weight:bold;'>🚀 Unlock ₹499 AI Kit</a>
+</div>
+""", unsafe_allow_html=True)
+
