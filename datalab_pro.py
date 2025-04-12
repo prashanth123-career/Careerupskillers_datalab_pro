@@ -8,6 +8,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
 
+# ---------- HIDE STREAMLIT DEFAULT HEADER & FOOTER ----------
+st.markdown("""
+    <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        header {visibility: hidden;}
+    </style>
+""", unsafe_allow_html=True)
+
 # Initialize session state
 if 'df' not in st.session_state:
     st.session_state.df = None
@@ -95,6 +104,19 @@ def visualization_tab():
         st.pyplot(fig)
     except Exception as e:
         st.error(f"Error generating plot: {str(e)}")
+    
+    # Advertisement for Tab 2
+    st.markdown("""
+    <div style='background-color: #fffbe6; border-left: 5px solid #ff9800; padding: 15px; border-radius: 8px; margin-top: 20px;'>
+      <h4>🛡️ Become a Freelance VAPT Expert</h4>
+      <p>Many students used our ₹499 Kit to start offering web security & vulnerability scans on Fiverr & Internshala. Clients now pay them ₹2K–₹8K per scan!</p>
+      <p>🎥 Watch:
+        <a href='https://youtu.be/vM8Chmkd22o?si=wIGD24ZegI8rj6Zg' target='_blank'>Freelance Security Path</a> •
+        <a href='https://youtu.be/uq_ba4Prjps?si=KW2odA2izyFDsNw6' target='_blank'>₹1L Freelancing Proof</a>
+      </p>
+      <a href='https://pages.razorpay.com/pl_Q9haRTHXpyB9SS/view' target='_blank' style='background-color:#1976d2;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;'>💻 Buy Kit & Start Scanning</a>
+    </div>
+    """, unsafe_allow_html=True)
 
 # --- Tab 3: Data Cleaning ---
 def cleaning_tab():
@@ -127,6 +149,19 @@ def cleaning_tab():
             st.success("Filled missing numeric values with column means")
         except Exception as e:
             st.error(f"Error filling missing values: {str(e)}")
+    
+    # Advertisement for Tab 3
+    st.markdown("""
+    <div style='background-color: #e0f7fa; border-left: 5px solid #00bcd4; padding: 15px; border-radius: 8px; margin-top: 20px;'>
+      <h4>📊 Master SIEM Monitoring – Even As A Fresher!</h4>
+      <p>This ₹499 kit includes a ready-to-use SIEM dashboard + demo alerts. Great for practicing incident detection, threat correlation, and impressing recruiters.</p>
+      <p>🗞 Featured in:
+        <a href='https://www.ndtvprofit.com/business/layoffs-2025-amazon-intel-morgan-stanley-among-companies-cutting-jobs-this-year' target='_blank'>NDTV</a> •
+        <a href='https://youtu.be/3ZmtSdAjxCM?si=h7W4AaezK_6xaBQd' target='_blank'>SIEM Career Insights</a>
+      </p>
+      <a href='https://pages.razorpay.com/pl_Q9haRTHXpyB9SS/view' target='_blank' style='background-color:#00838f;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;'>🎯 Get Your SIEM Toolkit</a>
+    </div>
+    """, unsafe_allow_html=True)
 
 # --- Main App ---
 st.set_page_config(
@@ -146,3 +181,15 @@ with tab2:
 
 with tab3:
     cleaning_tab()
+
+# --- Social Media Footer (All Tabs) ---
+st.markdown("""
+<hr style='margin-top:40px;'>
+<div style='text-align:center; font-size:16px; color:gray;'>
+    🧭 Follow <strong>CareerUpskillers</strong> for Career Tips & AI Tools:<br><br>
+    <a href='https://www.linkedin.com/company/careerupskillers' target='_blank' style='margin: 0 10px;'>🔗 LinkedIn</a> • 
+    <a href='https://twitter.com/careerupskill' target='_blank' style='margin: 0 10px;'>🐦 Twitter</a> • 
+    <a href='https://instagram.com/careerupskillers' target='_blank' style='margin: 0 10px;'>📸 Instagram</a> • 
+    <a href='https://youtube.com/@careerupskillers' target='_blank' style='margin: 0 10px;'>▶️ YouTube</a>
+</div>
+""", unsafe_allow_html=True)
