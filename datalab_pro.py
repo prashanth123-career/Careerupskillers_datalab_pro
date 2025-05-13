@@ -1,5 +1,16 @@
-import streamlit as st import pandas as pd import numpy as np import matplotlib matplotlib.use('Agg') import matplotlib.pyplot as plt import shap import joblib import io from sklearn.model_selection import train_test_split from sklearn.ensemble import RandomForestClassifier from sklearn.metrics import accuracy_score, confusion_matrix, classification_report from sklearn.preprocessing import LabelEncoder
-
+import streamlit as st
+import pandas as pd
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import shap
+import joblib
+import io
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.preprocessing import LabelEncoder
 st.set_page_config(page_title="DataLab Pro", page_icon="📊", layout="wide") st.markdown(""" <style> #MainMenu {visibility: hidden;} footer {visibility: hidden;} header {visibility: hidden;} </style> """, unsafe_allow_html=True)
 
 if 'df' not in st.session_state: st.session_state.df = None if 'model' not in st.session_state: st.session_state.model = None
