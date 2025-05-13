@@ -148,16 +148,16 @@ def get_data_quality_suggestions(df):
     if high_cardinality:
         suggestions.append(f"⚠️ High cardinality features detected: {', '.join(high_cardinality)}. Consider feature engineering.")
     
-    # Numeric outliers
-    numeric_cols = df.select_dtypes(include=np.number).columns
-    if len(numeric_cols) > 0:
-        for col in numeric_cols:
-            q1 = df[col].quantile(0.25)
-            q3 = df[col].quantile(0.75)
-            iqr = q3 - q1
-            outliers = ((df[col] < (q1 - 1.5 * iqr)) | ((df[col] > (q3 + 1.5 * iqr))
-            if outliers.sum() > 0:
-                suggestions.append(f"⚠️ {outliers.sum()} potential outliers detected in {col}. Consider transformation or removal.")
+# Numeric outliers
+numeric_cols = df.select_dtypes(include=np.number).columns
+if len(numeric_cols) > 0:
+    for col in numeric_cols:
+        q1 = df[col].quantile(0.25)
+        q3 = df[col].quantile(0.75)
+        iqr = q3 - q1
+        outliers = ((df[col] < (q1 - 1.5 * iqr)) | (df[col] > (q3 + 1.5 * iqr)))
+        if outliers.sum() > 0:
+            suggestions.append(f"⚠️ {outliers.sum()} potential outliers detected in {col}. Consider transformation or removal.")
     
     if not suggestions:
         suggestions.append("✅ Data quality looks good! No major issues detected.")
