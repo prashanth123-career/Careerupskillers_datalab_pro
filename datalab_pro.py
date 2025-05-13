@@ -68,7 +68,7 @@ def create_download_link(val, filename):
     return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}">Download {filename}</a>'
 
 def generate_pdf_report():
-    """Generate a comprehensive PDF report"""
+    """Generate a comprehensive PDF report and return as bytes for download"""
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size=12)
@@ -82,29 +82,43 @@ def generate_pdf_report():
     pdf.set_font("Arial", 'B', size=12)
     pdf.cell(200, 10, txt="Dataset Information", ln=1)
     pdf.set_font("Arial", size=10)
-    pdf.cell(200, 10, txt=f"Shape: {st.session_state.df.shape}", ln=1)
-    pdf.cell(200, 10, txt=f"Columns: {', '.join(st.session_state.df.columns)}", ln=1)
-    
+    if hasattr(st.session_state, "df") and st.session_state.df is not None:
+        pdf.cell(200, 10, txt=f"Shape: {st.session_state.df.shape}", ln=1)
+        pdf.cell(200, 10, txt=f"Columns: {', '.join(st.session_state.df.columns)}", ln=1)
+    else:
+        pdf.cell(200, 10, txt="No dataset loaded.", ln=1)
+
     # Add model info
-    if st.session_state.model:
+    if hasattr(st.session_state, "model") and st.session_state.model:
         pdf.ln(5)
         pdf.set_font("Arial", 'B', size=12)
         pdf.cell(200, 10, txt="Model Information", ln=1)
         pdf.set_font("Arial", size=10)
         pdf.cell(200, 10, txt=f"Model type: {type(st.session_state.model).__name__}", ln=1)
-        if st.session_state.best_params:
+        if hasattr(st.session_state, "best_params") and st.session_state.best_params:
             pdf.cell(200, 10, txt=f"Best parameters: {str(st.session_state.best_params)}", ln=1)
+    else:
+        pdf.ln(5)
+        pdf.set_font("Arial", 'B', size=12)
+        pdf.cell(200, 10, txt="Model Information", ln=1)
+        pdf.set_font("Arial", size=10)
+        pdf.cell(200, 10, txt="No model trained.", ln=1)
     
-    # Save to temporary file
-    temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.pdf')
-    pdf.output(temp_file.name)
-    
-    with open(temp_file.name, "rb") as f:
-        pdf_bytes = f.read()
-    
-    os.unlink(temp_file.name)
-    return pdf_bytes
+    # Output PDF to bytes
+    pdf_buffer = io.BytesIO()
+    pdf.output(pdf_buffer)
+    pdf_buffer.seek(0)
+    return pdf_buffer.getvalue()
 
+# Example usage in Streamlit:
+if st.button("Generate PDF Report"):
+    pdf_bytes = generate_pdf_report()
+    st.download_button(
+        label="Download PDF Report",
+        data=pdf_bytes,
+        file_name="datalab_pro_report.pdf",
+        mime="application/pdf"
+    )
 def generate_sweetviz_report():
     """Generate EDA report using Sweetviz"""
     report = sv.analyze(st.session_state.df)
